@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>FemMe Radio</title>
+<link rel="alternate" hreflang="el" href="https://www.femme-radio.gr/">
+<link rel="alternate" hreflang="en" href="https://www.femme-radio.gr/en/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,700;9..144,900&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#1a0d2b; --panel:#271340; --line:#3d2262; --text:#f0e8fb; --muted:#b4a1d1;
+  --accent:#c9a0ff; --live:#ff7ad9;
+  --serif:"Fraunces",Georgia,serif; --sans:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--text);font:400 1rem/1.6 var(--sans);padding-bottom:96px}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+nav{display:flex;gap:22px;justify-content:flex-end;padding:18px 0;font-weight:500}
+nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--text)}
+nav{align-items:center}
+nav a.join{color:var(--accent);border:1.5px solid var(--accent);border-radius:999px;padding:6px 18px;font-weight:700}
+nav a.join:hover{background:var(--accent);color:var(--bg)}
+nav a.lang{font-size:.85rem;font-weight:700;letter-spacing:.05em}
+.join-steps{color:var(--muted);margin:28px 0 0;max-width:60ch;font-size:.95rem}
+
+.hero{padding:40px 0 72px;text-align:left}
+.mark{font:900 clamp(4.5rem,18vw,10rem)/.9 var(--serif);letter-spacing:-.03em;margin:0;font-variation-settings:"opsz" 144}
+.mark span{color:var(--accent)}
+.tag{font:400 1.25rem/1.4 var(--serif);color:var(--muted);margin:18px 0 36px;max-width:40ch}
+.playrow{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.play{display:inline-flex;align-items:center;gap:12px;background:var(--accent);color:#1a0d2b;border:0;border-radius:999px;padding:18px 40px;font:700 1.25rem var(--sans);cursor:pointer;transition:transform .15s}
+.play:hover{transform:scale(1.03)}
+.play svg{width:22px;height:22px;fill:currentColor}
+.now{color:var(--muted);margin:0}
+.now b{color:var(--text);font-weight:500}
+
+section{padding:48px 0;border-top:1px solid var(--line)}
+h2{font:700 2rem/1.15 var(--serif);margin:0 0 8px}
+.sub{color:var(--muted);margin:0 0 28px;max-width:60ch}
+
+.sched{list-style:none;margin:0;padding:0}
+.sched li{display:grid;grid-template-columns:110px 1fr auto;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.sched .when{color:var(--muted);font-variant-numeric:tabular-nums}
+.sched .name{font-weight:500}
+.sched .host{color:var(--muted);font-size:.9rem;display:block}
+.sched li.now-on{background:var(--panel);margin:0 -14px;padding:14px;border-radius:12px;border-bottom-color:transparent}
+.badge{font-size:.8rem;font-weight:700;padding:3px 12px;border-radius:999px;border:1px solid var(--line);color:var(--muted);white-space:nowrap}
+.badge.live{background:var(--live);border-color:var(--live);color:#2a0a22}
+.badge.rec{color:var(--accent);border-color:var(--accent)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--panel);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:8px;text-decoration:none;border:1px solid transparent;transition:border-color .15s}
+.card:hover{border-color:var(--accent)}
+.card h3{font:700 1.3rem/1.2 var(--serif);margin:0}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.card .meta{margin-top:auto;padding-top:12px;font-size:.85rem;color:var(--accent);font-weight:500}
+
+.eps{list-style:none;margin:0;padding:0}
+.eps li{display:flex;justify-content:space-between;gap:16px;align-items:center;padding:16px 0;border-bottom:1px solid var(--line)}
+.eps a{text-decoration:none;font-weight:500}
+.eps a:hover{color:var(--accent)}
+.eps small{color:var(--muted);display:block;font-weight:400}
+.eps .len{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+footer{padding:32px 0 8px;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+.ft{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+.social{display:flex;flex-wrap:wrap;gap:18px}
+.social a{color:var(--text);text-decoration:none;font-weight:500}
+.social a:hover,.ft a.nl:hover{color:var(--accent)}
+.ft a.nl{color:var(--accent);font-weight:700;text-decoration:none}
+
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--panel);border-top:1px solid var(--line);padding:12px 20px calc(12px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:16px;transform:translateY(110%);transition:transform .25s}
+.bar.on{transform:none}
+.bar button{width:44px;height:44px;border-radius:50%;border:0;background:var(--accent);color:#1a0d2b;cursor:pointer;display:grid;place-items:center;flex:none}
+.bar svg{width:18px;height:18px;fill:currentColor}
+.bar .t{min-width:0;flex:1}
+.bar .t b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar .t span{color:var(--muted);font-size:.85rem}
+.eq{display:flex;gap:3px;align-items:flex-end;height:22px}
+.eq i{width:4px;background:var(--live);border-radius:2px;height:6px}
+.bar.playing .eq i{animation:bounce 1s infinite ease-in-out}
+.bar.playing .eq i:nth-child(2){animation-delay:.2s}
+.bar.playing .eq i:nth-child(3){animation-delay:.4s}
+.bar.playing .eq i:nth-child(4){animation-delay:.1s}
+@keyframes bounce{0%,100%{height:6px}50%{height:22px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.bar.playing .eq i{animation:none;height:14px}.bar{transition:none}}
+@media (max-width:560px){.sched li{grid-template-columns:1fr auto}.sched .when{grid-column:1/-1}nav{justify-content:flex-start;flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="Main">
+    <a href="#schedule">Schedule</a>
+    <a href="#shows">Shows</a>
+    <a href="#podcasts">Podcasts</a>
+    <a href="#join" class="join">Get involved</a>
+    <a href="/" class="lang" lang="el" hreflang="el" aria-label="Ελληνική έκδοση">ΕΛ</a>
+  </nav>
+
+  <header class="hero">
+    <h1 class="mark" aria-label="FemMe"><span>F</span>em<span>M</span>e</h1>
+    <p class="tag">Words, music and conversations on women’s emancipation and the dismantling of patriarchy.</p>
+    <div class="playrow">
+      <button class="play" id="heroPlay" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+        Play
+      </button>
+      <p class="now" id="nowLine">On air: <b>Non-stop music</b></p>
+    </div>
+  </header>
+
+  <section id="schedule">
+    <h2>Schedule</h2>
+    <p class="sub">Today’s programme on the station.</p>
+    <ul class="sched" id="schedList"></ul>
+  </section>
+
+  <section id="shows">
+    <h2>Shows</h2>
+    <p class="sub">Live and recorded shows.</p>
+    <div class="grid">
+      <a class="card" href="#">
+        <span class="badge live" style="align-self:flex-start">Live</span>
+        <h3>Show 1</h3>
+        <p>A short description of the show, its host and its topics.</p>
+        <span class="meta">Monday, 20:00</span>
+      </a>
+      <a class="card" href="#">
+        <span class="badge rec" style="align-self:flex-start">Recorded</span>
+        <h3>Show 2</h3>
+        <p>A short description of the show, its host and its topics.</p>
+        <span class="meta">Wednesday, 18:00</span>
+      </a>
+      <a class="card" href="#">
+        <span class="badge live" style="align-self:flex-start">Live</span>
+        <h3>Show 3</h3>
+        <p>A short description of the show, its host and its topics.</p>
+        <span class="meta">Friday, 21:00</span>
+      </a>
+    </div>
+  </section>
+
+  <section id="podcasts">
+    <h2>Podcasts</h2>
+    <p class="sub">Listen any time.</p>
+    <ul class="eps">
+      <li><a href="#">Episode 1<small>Series name · This week</small></a><span class="len">42 min</span></li>
+      <li><a href="#">Episode 2<small>Series name · Last week</small></a><span class="len">35 min</span></li>
+    </ul>
+  </section>
+
+  <section id="join">
+    <h2>Get involved</h2>
+    <p class="sub">FemMe is made of your voices. Send us songs, a playlist or an idea for a show about women’s emancipation and empowerment.<br>Right now, as we’re starting out, what we need most is songs we can legally broadcast.</p>
+    <div class="grid">
+      <a class="card" id="joinSong" href="https://tally.so/r/jaOQr1" target="_blank" rel="noopener">
+        <h3>Send a song</h3>
+        <p>Know a song we can legally play? An old one, a Creative Commons track, or one by an artist who would give permission.</p>
+        <span class="meta">Send the song</span>
+      </a>
+      <a class="card" id="joinPlaylist" href="#">
+        <h3>Suggest a playlist</h3>
+        <p>A list of songs you’d like to hear on the station: artist, title and a link.</p>
+        <span class="meta">Send your playlist</span>
+      </a>
+      <a class="card" id="joinShow" href="#">
+        <h3>Propose a show</h3>
+        <p>Have an idea for a show or podcast, live or recorded? Tell us the topic, the content, the format and how often you imagine it.</p>
+        <span class="meta">Send your proposal</span>
+      </a>
+      <a class="card" id="joinArtist" href="#">
+        <h3>Send your music</h3>
+        <p>Are you an artist? Send us your tracks along with your permission for them to be played on the station.</p>
+        <span class="meta">Send your tracks</span>
+      </a>
+      <a class="card" id="joinTeam" href="#">
+        <h3>Shape the station</h3>
+        <p>Want to take part in running the station, or give us some advice or an idea?</p>
+        <span class="meta">Join in or advise</span>
+      </a>
+    </div>
+    <p class="join-steps">For anything else, write to us at <a id="joinMail" href="#"></a>.</p>
+  </section>
+
+  <footer>
+    <div class="ft">
+      <span>© FemMe Radio</span>
+      <span class="social" id="social"></span>
+      <a class="nl" id="newsletter" href="#">Join the newsletter</a>
+    </div>
+  </footer>
+</div>
+
+<div class="bar" id="bar" role="region" aria-label="Player">
+  <button id="barBtn" type="button" aria-label="Pause"><svg viewBox="0 0 24 24" aria-hidden="true"><path id="barIcon" d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg></button>
+  <div class="t"><b id="barTitle">Non-stop music</b><span id="barStatus">FemMe Radio</span></div>
+  <div class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+</div>
+
+<audio id="audio" preload="none"></audio>
+
+<script>
+/* 1. Stream link from AzuraCast (same as the Greek page) */
+var STREAM_URL = "https://radio.femme-radio.gr/listen/femme_radio/radio.mp3";
+
+/* 3. Contact email */
+var CONTACT_EMAIL = "info@femme-radio.gr";
+
+/* 4. Social links. Empty "" ones are hidden. */
+var SOCIAL = {
+  "Instagram":   "",
+  "Twitter / X": "https://x.com/femmeradiogr"
+};
+/* 5. Newsletter sign-up link. If empty, the button opens a sign-up email. */
+var NEWSLETTER_URL = "";
+
+/* 2. Show schedule. days: 0=Sunday ... 6=Saturday. type: "live" or "recorded". */
+var SHOWS = [
+  {days:[1,3,5], start:"18:00", end:"19:00", title:"Show 2", host:"Host", type:"recorded"},
+  {days:[1],     start:"20:00", end:"21:00", title:"Show 1", host:"Host", type:"live"},
+  {days:[5],     start:"21:00", end:"23:00", title:"Show 3", host:"Host", type:"live"}
+];
+
+var audio = document.getElementById("audio");
+var bar = document.getElementById("bar");
+var icon = document.getElementById("barIcon");
+var PLAY = "M7 4.5v15l13-7.5z", PAUSE = "M6 5h4v14H6zM14 5h4v14h-4z";
+
+function mins(t){var p=t.split(":");return +p[0]*60+ +p[1];}
+function now(){var d=new Date();return {day:d.getDay(),m:d.getHours()*60+d.getMinutes()};}
+
+function current(){
+  var n=now();
+  for(var i=0;i<SHOWS.length;i++){
+    var s=SHOWS[i];
+    if(s.days.indexOf(n.day)>-1 && n.m>=mins(s.start) && n.m<mins(s.end)) return s;
+  }
+  return null;
+}
+
+function renderSchedule(){
+  var n=now(), list=document.getElementById("schedList"), cur=current();
+  var today=SHOWS.filter(function(s){return s.days.indexOf(n.day)>-1;})
+    .sort(function(a,b){return mins(a.start)-mins(b.start);});
+  list.innerHTML="";
+  if(!today.length){
+    list.innerHTML='<li><span class="when">All day</span><span class="name">Non-stop music</span><span></span></li>';
+  }
+  today.forEach(function(s){
+    var li=document.createElement("li");
+    if(s===cur) li.className="now-on";
+    var label=s.type==="live"?"Live":"Recorded";
+    var cls=s.type==="live"?"live":"rec";
+    li.innerHTML='<span class="when">'+s.start+' – '+s.end+'</span>'+
+      '<span class="name">'+s.title+'<span class="host">'+s.host+'</span></span>'+
+      '<span class="badge '+cls+'">'+(s===cur?"On air":label)+'</span>';
+    list.appendChild(li);
+  });
+  var title=cur?cur.title:"Non-stop music";
+  document.getElementById("nowLine").innerHTML='On air: <b>'+title+'</b>';
+  document.getElementById("barTitle").textContent=title;
+}
+
+function setPlaying(on){
+  bar.classList.toggle("playing",on);
+  icon.setAttribute("d",on?PAUSE:PLAY);
+  document.getElementById("barBtn").setAttribute("aria-label",on?"Pause":"Play");
+}
+
+function toggle(){
+  bar.classList.add("on");
+  if(!STREAM_URL){
+    document.getElementById("barStatus").textContent="Stream link not set yet";
+    return;
+  }
+  if(audio.paused){
+    if(!audio.src) audio.src=STREAM_URL;
+    audio.play().then(function(){
+      document.getElementById("barStatus").textContent="FemMe Radio · Live";
+    }).catch(function(){
+      document.getElementById("barStatus").textContent="Couldn't start the stream. Try again.";
+    });
+  } else {
+    audio.pause();
+    audio.removeAttribute("src");
+    audio.load();
+    document.getElementById("barStatus").textContent="Paused";
+  }
+}
+
+audio.addEventListener("playing",function(){setPlaying(true);});
+audio.addEventListener("pause",function(){setPlaying(false);});
+audio.addEventListener("error",function(){setPlaying(false);});
+document.getElementById("heroPlay").addEventListener("click",toggle);
+document.getElementById("barBtn").addEventListener("click",toggle);
+
+
+function mailto(subject, body){
+  return "mailto:"+CONTACT_EMAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+}
+var jp = document.getElementById("joinPlaylist");
+jp.href = "https://tally.so/r/44g7M5"; jp.target = "_blank"; jp.rel = "noopener";
+var js = document.getElementById("joinShow");
+js.href = "https://tally.so/r/ZjpO0V"; js.target = "_blank"; js.rel = "noopener";
+(function(){
+  var box=document.getElementById("social");
+  Object.keys(SOCIAL).forEach(function(k){
+    if(!SOCIAL[k]) return;
+    var a=document.createElement("a"); a.href=SOCIAL[k]; a.textContent=k;
+    a.target="_blank"; a.rel="noopener"; box.appendChild(a);
+  });
+  var nl=document.getElementById("newsletter");
+  if(NEWSLETTER_URL){ nl.href=NEWSLETTER_URL; nl.target="_blank"; nl.rel="noopener"; }
+  else { nl.href=mailto("FemMe Radio newsletter sign-up","I'd like to receive updates about FemMe Radio's shows and news.\n\nName:\n"); }
+})();
+
+var ja = document.getElementById("joinArtist");
+ja.href = "https://tally.so/r/zxaMlk"; ja.target = "_blank"; ja.rel = "noopener";
+var jt = document.getElementById("joinTeam");
+jt.href = "https://tally.so/r/xXeJeE"; jt.target = "_blank"; jt.rel = "noopener";
+var jm = document.getElementById("joinMail");
+jm.href = "mailto:"+CONTACT_EMAIL; jm.textContent = CONTACT_EMAIL;
+
+renderSchedule();
+setInterval(renderSchedule,60000);
+
+// Update now-playing info from AzuraCast
+function updateNowPlaying() {
+  fetch('https://radio.femme-radio.gr/api/nowplaying/femme_radio')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      if (data && data.now_playing && data.now_playing.song) {
+        var s = data.now_playing.song;
+        var songText = (s.artist && s.title) ? (s.artist + " - " + s.title) : (s.title || s.text);        
+        document.getElementById("nowLine").innerHTML = 'On air: <b>' + songText + '</b>';
+        document.getElementById("barTitle").textContent = songText;
+      }
+    })
+    .catch(function(err) {
+      console.log('Error fetching song info:', err);
+    });
+}
+
+// Check every 10 seconds
+updateNowPlaying();
+setInterval(updateNowPlaying, 10000);
+
+// Autostart
+window.addEventListener("DOMContentLoaded", function() {
+  toggle();
+});
+</script>
+</body>
+</html>
