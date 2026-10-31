@@ -358,7 +358,9 @@ updateNowPlaying();
 setInterval(updateNowPlaying, 10000);
 
 // Aftomati ekkinisi
+// (not when opened from another site that already plays the radio: ?noplay)
 window.addEventListener("DOMContentLoaded", function() {
+  if (/[?&]noplay\b/.test(location.search)) return;
   toggle();
 });
 </script>
